@@ -1,0 +1,67 @@
+<div class="wrapper">
+  <div class="inner">
+    <form (ngSubmit)="loginUser(loginForm)" #loginForm="ngForm">
+      <h3>Login</h3>
+
+      <!-- Email Field -->
+      <div class="form-holder">
+        <span class="lnr lnr-envelope"></span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Mail"
+          [(ngModel)]="loginData.email"
+          name="email"
+          required
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          #email="ngModel"
+        />
+      </div>
+
+      @if ((email.invalid && (email.dirty || email.touched)) ||
+      (loginForm.submitted && email.invalid)) {
+      <div class="error-message">
+        @if (email.hasError('required')) {
+        <div>Email is required.</div>
+        } @if (email.hasError('pattern')) {
+        <div>Please enter a valid email address.</div>
+        }
+      </div>
+      }
+
+      <!-- Password Field -->
+      <div class="form-holder">
+        <span class="lnr lnr-lock"></span>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          [(ngModel)]="loginData.password"
+          name="password"
+          required
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          #password="ngModel"
+        />
+      </div>
+
+      @if ((password.invalid && (password.dirty || password.touched)) ||
+      (loginForm.submitted && password.invalid)) {
+      <div class="error-message">
+        @if (password.hasError('required')) {
+        <div>Password is required.</div>
+        } @if (password.hasError('pattern')) {
+        <div>
+          Password must contain at least one uppercase letter, one lowercase
+          letter, one number, and one special character.
+        </div>
+        }
+      </div>
+      }
+
+      <button type="submit">Login</button>
+      @if(loginForm.submitted && loginForm.invalid) {
+        <div class="error-message">Form is invalid. Please check the fields.</div>
+      }
+    </form>
+  </div>
+</div>

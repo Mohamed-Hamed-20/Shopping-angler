@@ -1,0 +1,31 @@
+<p>add-recipe works!</p>
+
+<form #recipeForm="ngForm" (ngSubmit)="handleSubmit()">
+  <div class="form-group">
+    <label for="name">Recipe name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      aria-describedby="nameHelp"
+      placeholder="Enter Recipe name"
+      name="recipeName"
+      />
+      <!-- [(ngModel)]="" -->
+    <!-- <small id="emailHelp" class="form-text text-muted"
+      >We'll never share your email with anyone else.</small
+    > -->
+  </div>
+  <div class="form-group">
+    <label for="Description">Description</label>
+    <textarea
+      class="form-control"
+      id="Description"
+      placeholder="Description"
+      rows="5"
+      name="description"
+      ngModel
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,9 @@
+<div class="product-list d-flex flex-wrap justify-content-center">
+  @for (product of products; track product.id) {
+    <app-product-card [product]="product"></app-product-card>
+  }
+</div>
+
+@if (products.length < totalProducts) {
+  <button (click)="loadMore()"> Load More </button>
+}

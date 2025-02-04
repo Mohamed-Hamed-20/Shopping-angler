@@ -1,0 +1,43 @@
+<nav class="navbar bg-body-tertiary" [ngClass]="{ scrolled: isScrolled }">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      routerLink="/"
+      routerLinkActive="active-Link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ title }}
+    </a>
+    <div class="actions">
+      <ng-container *ngIf="!isLoggedIn">
+        <a
+          class="navbar-brand"
+          routerLink="/register"
+          routerLinkActive="active-Link"
+          >Register</a
+        >
+        <a
+          class="navbar-brand"
+          routerLink="/login"
+          routerLinkActive="active-Link"
+          >Login</a
+        >
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <span>Hello, {{ username }}</span>
+        <button class="btn btn-warning" (click)="logout()">Logout</button>
+      </ng-container>
+
+      <div class="cart">
+        <i
+          class="fa-solid fa-cart-plus navbar-brand"
+          style="cursor: pointer"
+          routerLink="/cart"
+          routerLinkActive="active-Link"
+        ></i>
+        <h5>{{ cartItemCount }}</h5>
+      </div>
+    </div>
+  </div>
+</nav>
